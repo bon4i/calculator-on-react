@@ -23,13 +23,13 @@ export const App = () => {
         }
     };
 
-    const calcOperands = () => {
+    const calcOperands = (num) => {
         switch (operator) {
             case '+':
-                setResult(Number(operand1) + Number(operand2));
+                setResult(`= ${Number(operand1) + Number(operand2)}`);
                 break;
             case '-':
-                setResult(Number(operand1) - Number(operand2));
+                setResult(`= ${Number(operand1) - Number(operand2)}`);
                 break;
             default:
         }
@@ -54,7 +54,6 @@ export const App = () => {
                 break;
             case '=':
                 calcOperands();
-                clearValues();
                 break;
             default:
         }
@@ -64,11 +63,12 @@ export const App = () => {
     return (
         <>
             <div className={styles.form}>
-                <div className={styles['dispalay-container']}>
+                <div
+                    className={`${styles['dispalay-container']} ${result && styles.result}`}
+                >
                     <p>
-                        {operand1 || 'Ваши числа'} {operator} {operand2}
+                        {operand1 || '0'} {operator} {operand2} {result}
                     </p>
-                    <p>{result || 'Ваш результат'}</p>
                 </div>
                 <div
                     className={styles['buttons-container-operators']}
